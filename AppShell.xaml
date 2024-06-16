@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="TabandFlyout.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    FlyoutIcon="barbiess.png"
+    Shell.TabBarIsVisible="False"
+    xmlns:local="clr-namespace:TabandFlyout"
+    Title="Barbie">
+    
+    <!-- Flyout Header-->
+    <Shell.FlyoutHeader>
+        <Grid BackgroundColor="{StaticResource MyColor}"
+          HeightRequest="120"
+          Padding="0,10">
+            <Image Source="header.jpg"/>
+            <Label Text="Barbie"
+               TextColor="HotPink"
+               FontSize="42"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"
+               VerticalOptions="End"/>
+        </Grid>
+
+    </Shell.FlyoutHeader>
+
+    <!-- Flyout Footer-->
+    <Shell.FlyoutFooter>
+        <VerticalStackLayout Padding="10">
+        <Label Text="Copyright © 2024 BarbieHelp"
+               FontSize="10"
+               FontAttributes="None"
+               HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </Shell.FlyoutFooter>
+
+    <!-- Flyout Backdrop -->
+    <Shell.FlyoutBackdrop>
+        <LinearGradientBrush StartPoint="0,0"
+                         EndPoint="0,1">
+            <GradientStop Color= "LightPink" Offset="0.1"/>
+            <GradientStop Color= "Orange" Offset="0.6"/>
+            <GradientStop Color= "Purple" Offset="1.6"/>
+
+        </LinearGradientBrush>
+    </Shell.FlyoutBackdrop>
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid ColumnDefinitions="35,*" Padding="0,5">
+                <Image Grid.Column="0"
+                       Grid.Row="0"
+           Source="{Binding FlyoutIcon}"
+           HeightRequest="25"
+           HorizontalOptions="Center"/>
+
+
+                <Label Grid.Column="1"
+                        Text="{Binding Title}"
+                        FontSize="Small"
+                        FontAttributes="None"
+                        VerticalOptions="Center"/>
+                
+            </Grid>
+
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+    <ShellContent
+        Title="Home" Icon="home.png" 
+        ContentTemplate="{DataTemplate local:HomePage}"
+        Route="HomePage" />
+    <ShellContent
+        Title="Setting" Icon="setting_i.png" 
+        ContentTemplate="{DataTemplate local:SettingPage}"
+        Route="SettingPage" />
+    <ShellContent Icon="about.png"
+        Title="About"
+        ContentTemplate="{DataTemplate local:AboutPage}"
+        Route="AboutPage"/>
+  </FlyoutItem>
+
+
+</Shell>
